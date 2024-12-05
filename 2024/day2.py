@@ -43,9 +43,8 @@ def part2():
 
         fail_count = 0
         for i in range(len(l)):
-            temp = l[:i] + l[i+1:]
-
-            if is_valid_report(temp):
+            modified_report = l[:i] + l[i+1:]
+            if is_valid_report(modified_report):
                 break
             else:
                 fail_count += 1
