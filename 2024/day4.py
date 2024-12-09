@@ -1,5 +1,4 @@
 from pathlib import Path
-import pdb
 
 
 def read_input() -> [str]:
@@ -61,4 +60,37 @@ def part1():
     print(count)
 
 
+def x_mas(i,j,ls) -> [str]:
+    if i + 3 > len(ls) or j + 3 > len(ls):
+        return [], []
+
+    return [
+        ls[i][j] + ls[i+1][j+1] + ls[i+2][j+2],
+        ls[i+2][j] + ls[i+1][j+1] + ls[i][j+2],
+    ]
+
+
+def part2():
+    ls = read_input()
+
+    count = 0
+    i = 0
+    j = 0
+    while i < len(ls):
+        l = ls[i]
+        while j < len(l):
+            checks = x_mas(i,j,ls)
+            res = list(filter(lambda x: x == 'MAS' or x == 'SAM', checks))
+            if len(res) == 2:
+                count += 1
+
+            j += 1
+
+        j = 0
+        i += 1
+
+    print(count)
+
+
 part1()
+part2()
